@@ -32,7 +32,7 @@ exports.post = function( request, response, next ) {
     'password' : 3
   };
   // catch missing required params
-  for( int i = 0; i < required_params.length; i++ ) { 
+  for( var i = 0; i < required_params.length; i++ ) { 
     if( body[ required_params[ i ] ] === undefined ) { 
       err = new Error( required_params[ i ] + ' parameter is required' );
       err.status = 400;
@@ -51,6 +51,7 @@ exports.post = function( request, response, next ) {
 };
 
 exports.get = function( id, request, response, next ) { 
+  response.setHeader( 'Content-Type', 'application/json' );
   User.get( id, request, response, next, helper_function.callback );
 };
 
